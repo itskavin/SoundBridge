@@ -9,11 +9,37 @@
 <body>
   <main class="app">
     <h1>SoundBridge Web P2P</h1>
-    <p class="subtitle">No backend relay. Browser peers connect directly using WebRTC and manual offer/answer exchange.</p>
+    <p class="subtitle">Web-first, no managed media relay. Browser peers connect directly over WebRTC using manual offer/answer exchange.</p>
+
+    <section class="panel quickstart">
+      <h2>Quick Start</h2>
+      <ol>
+        <li>Open this page in two devices or browsers.</li>
+        <li>On device A, use Broadcaster and copy the offer.</li>
+        <li>On device B, paste offer, create answer, then copy answer.</li>
+        <li>Back on device A, paste answer and apply it.</li>
+      </ol>
+      <p class="note">Recommended for local testing: same Wi-Fi network, HTTPS in production.</p>
+    </section>
+
+    <section class="panel status-panel">
+      <h2>Connection Status</h2>
+      <div class="status-grid">
+        <div><strong>Broadcaster:</strong> <span id="broadcasterState">idle</span></div>
+        <div><strong>Listener:</strong> <span id="listenerState">idle</span></div>
+      </div>
+      <div class="actions-row">
+        <button id="resetAll" class="secondary">Reset Session</button>
+        <button id="clearLog" class="secondary">Clear Log</button>
+      </div>
+    </section>
 
     <section class="panel">
       <h2>Broadcaster (acts as sender/server)</h2>
-      <button id="startBroadcaster">Start Broadcaster</button>
+      <div class="actions-row">
+        <button id="startBroadcaster">Start Broadcaster</button>
+        <button id="copyOffer" class="secondary">Copy Offer</button>
+      </div>
       <textarea id="offerOut" placeholder="Broadcaster offer will appear here"></textarea>
       <textarea id="answerIn" placeholder="Paste listener answer here"></textarea>
       <button id="applyAnswer">Apply Listener Answer</button>
@@ -22,8 +48,12 @@
     <section class="panel">
       <h2>Listener (acts as receiver)</h2>
       <textarea id="offerIn" placeholder="Paste broadcaster offer here"></textarea>
-      <button id="createAnswer">Create Answer</button>
+      <div class="actions-row">
+        <button id="createAnswer">Create Answer</button>
+        <button id="copyAnswer" class="secondary">Copy Answer</button>
+      </div>
       <textarea id="answerOut" placeholder="Listener answer will appear here"></textarea>
+      <p class="note">Click play on some browsers if audio does not autoplay.</p>
       <audio id="remoteAudio" autoplay controls></audio>
     </section>
 

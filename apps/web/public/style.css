@@ -4,6 +4,7 @@
   --text: #0f172a;
   --subtle: #475569;
   --accent: #0f766e;
+  --accent-2: #14532d;
   --border: #dbe3ef;
 }
 
@@ -36,6 +37,34 @@ body {
   margin: 14px 0;
 }
 
+.status-panel {
+  background: linear-gradient(180deg, #fcfffd 0%, #f7fbfa 100%);
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 760px) {
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.note {
+  color: var(--subtle);
+  font-size: 13px;
+}
+
 button {
   border: 0;
   border-radius: 10px;
@@ -44,6 +73,29 @@ button {
   padding: 10px 14px;
   font-weight: 600;
   cursor: pointer;
+}
+
+button.secondary {
+  background: #e5f7f3;
+  color: #115e59;
+  border: 1px solid #99f6e4;
+}
+
+button:hover {
+  filter: brightness(0.98);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+span#broadcasterState,
+span#listenerState {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #1e3a8a;
 }
 
 textarea, pre {
