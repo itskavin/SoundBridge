@@ -1,4 +1,4 @@
-# SoundBridge Web (Next.js)
+# SoundBridge
 
 Web-first app for realtime peer-to-peer audio onboarding.
 

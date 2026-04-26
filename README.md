@@ -5,7 +5,7 @@ SoundBridge OSS is a web-first, open-source audio relay alternative focused on d
 Current strategy:
 
 - Primary product is web.
-- Native app development is paused for v1 milestones.
+- Native app development is planned.
 - Media transport is client-controlled P2P (WebRTC).
 - No managed backend audio relay in v1.
 

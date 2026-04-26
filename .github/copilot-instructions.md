@@ -18,7 +18,7 @@ SoundBridge OSS is an open-source, low-latency audio relay platform and a qualit
 - `crates/sb-audio`: audio configuration and mode abstractions.
 - `apps/desktop`: paused for active development unless explicitly requested.
 - `apps/mobile`: paused for active development unless explicitly requested.
-- `apps/web/public`: browser-based sender/receiver (manual signaling, no centralized relay control).
+- `apps/web/app`: browser-based sender/receiver app (Next.js, no centralized media relay control).
 - `protocol/`: wire protocol specs and versioned message contracts.
 - `docs/architecture`: ADRs and system decisions.
 - `docs/benchmarks`: benchmark methodology and result templates.
