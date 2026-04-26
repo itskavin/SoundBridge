@@ -1,0 +1,20 @@
+[workspace]
+members = [
+    "crates/sb-core",
+    "crates/sb-transport",
+    "crates/sb-audio",
+    "apps/desktop",
+    "apps/mobile"
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+license = "MPL-2.0"
+version = "0.1.0"
+authors = ["SoundBridge OSS Contributors"]
+
+[workspace.dependencies]
+serde = { version = "1.0", features = ["derive"] }
+thiserror = "1.0"
+tracing = "0.1"

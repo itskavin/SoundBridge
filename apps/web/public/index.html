@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoundBridge Web P2P</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="app">
+    <h1>SoundBridge Web P2P</h1>
+    <p class="subtitle">No backend relay. Browser peers connect directly using WebRTC and manual offer/answer exchange.</p>
+
+    <section class="panel">
+      <h2>Broadcaster (acts as sender/server)</h2>
+      <button id="startBroadcaster">Start Broadcaster</button>
+      <textarea id="offerOut" placeholder="Broadcaster offer will appear here"></textarea>
+      <textarea id="answerIn" placeholder="Paste listener answer here"></textarea>
+      <button id="applyAnswer">Apply Listener Answer</button>
+    </section>
+
+    <section class="panel">
+      <h2>Listener (acts as receiver)</h2>
+      <textarea id="offerIn" placeholder="Paste broadcaster offer here"></textarea>
+      <button id="createAnswer">Create Answer</button>
+      <textarea id="answerOut" placeholder="Listener answer will appear here"></textarea>
+      <audio id="remoteAudio" autoplay controls></audio>
+    </section>
+
+    <section class="panel log-panel">
+      <h2>Log</h2>
+      <pre id="log"></pre>
+    </section>
+  </main>
+
+  <script src="./main.js" defer></script>
+</body>
+</html>
