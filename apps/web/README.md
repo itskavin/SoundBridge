@@ -1,32 +1,40 @@
-# SoundBridge Web
+# SoundBridge Web (Next.js)
 
-SoundBridge Web is a serverless peer mode.
+Web-first app for realtime peer-to-peer audio onboarding.
 
-- No managed relay required
-- No centralized media control
-- Browser peers connect directly over WebRTC
-- Offer/answer is exchanged manually by users
+## Goals
+
+- Same-network automatic peer discovery hints
+- Human-readable device names
+- One-click onboarding for non-technical users
+- Browser-only sender/receiver flow
+
+## Stack
+
+- Next.js App Router
+- React client-side WebRTC
+- Lightweight in-memory signaling API (for development and single-instance hosting)
 
 ## Run Locally
 
 ```powershell
-cd apps/web/public
-python -m http.server 5173
+cd apps/web
+npm install
+npm run dev
 ```
 
 Open `http://localhost:5173`.
 
-## Host Online (Static Only)
+## Production Notes
 
-Deploy `apps/web/public` to any static host (GitHub Pages, Netlify, Cloudflare Pages, Vercel static).
+- Host behind HTTPS.
+- Media remains peer-to-peer.
+- Signaling API in this repo is in-memory and best for single-instance deployment.
 
-Requirement:
+## UX Flow
 
-- Serve over HTTPS in production so browser media APIs work.
-
-## Common Use Cases
-
-- Guest listener joins from browser without installing app
-- Team demo sessions across OSes in minutes
-- Fast fallback path when native app installation is blocked
-- Classroom/workshop broadcasting from one device to many listeners
+1. Open app on two devices.
+2. Set recognizable device names.
+3. Select discovered peer from list.
+4. Start call as broadcaster.
+5. Receiver hears stream in browser audio element.

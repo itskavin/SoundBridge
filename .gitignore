@@ -13,3 +13,7 @@ flutter/.packages
 # IDE/user noise
 *.iml
 .idea/
+
+# Node / Next.js
+node_modules/
+.next/

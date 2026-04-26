@@ -1,6 +1,6 @@
 # SoundBridge OSS
 
-SoundBridge OSS is a web-first, open-source, low-latency audio relay alternative focused on direct peer-to-peer browser audio.
+SoundBridge OSS is a web-first, open-source audio relay alternative focused on direct peer-to-peer browser audio.
 
 Current strategy:
 
@@ -16,30 +16,53 @@ Current strategy:
 - Better transparency: users control offer/answer and direct peer path.
 - Lower operational complexity for v1.
 
+## What is working now
+
+- Next.js web app is running and production-buildable.
+- Device name based onboarding is implemented.
+- Automatic same-network peer discovery hint is implemented.
+- One-click broadcaster flow is implemented.
+- Receiver audio playback in browser is implemented.
+
 ## Repository map
 
-- [apps/web/public/index.html](apps/web/public/index.html): web UI and workflow
-- [apps/web/public/main.js](apps/web/public/main.js): WebRTC signaling and session logic
-- [apps/web/public/style.css](apps/web/public/style.css): UI styles
+- [apps/web/app/page.js](apps/web/app/page.js): web UI and onboarding flow
+- [apps/web/app/api/signal/route.js](apps/web/app/api/signal/route.js): lightweight signaling and peer list API
+- [apps/web/app/api/network/route.js](apps/web/app/api/network/route.js): network hint API
+- [apps/web/app/globals.css](apps/web/app/globals.css): web styling
+- [apps/web/app/lib/signalStore.js](apps/web/app/lib/signalStore.js): in-memory signal store
 - [apps/web/README.md](apps/web/README.md): web-specific notes
-- [flutter/](flutter/): retained for future native/hybrid work
 - [docs/architecture/WEB-COMPATIBILITY.md](docs/architecture/WEB-COMPATIBILITY.md): browser and OS constraints
 - [docs/architecture/V1-LAUNCH-CHECKLIST.md](docs/architecture/V1-LAUNCH-CHECKLIST.md): release checklist
 
 ## Quick local run
 
 1. Open terminal in repo root.
-2. Run local static server:
+2. Run the Next.js app:
 
 ```powershell
-powershell -Command "Set-Location apps/web/public; python -m http.server 5173"
+cd apps/web
+npm install
+npm run dev
 ```
 
 3. Open [http://localhost:5173](http://localhost:5173).
-4. Test with two browser windows/devices:
-	1. Broadcaster: Start Broadcaster, copy offer.
-	2. Listener: paste offer, create answer, copy answer.
-	3. Broadcaster: paste answer, apply answer.
+4. Open a second device/browser on the same network.
+
+## User onboarding flow
+
+1. Set a clear device name on each device.
+2. Wait for auto-discovered peers to appear.
+3. Select the target peer.
+4. Click Start Call as Broadcaster.
+5. Accept microphone permission.
+6. Receiver hears stream in browser.
+
+## Same-WiFi auto discovery behavior
+
+- Discovery uses same public network hint (request IP) to prioritize nearby peers.
+- This avoids manual offer/answer copy-paste for the default flow.
+- Media remains direct peer-to-peer.
 
 ## Web behavior and compatibility
 
@@ -53,13 +76,23 @@ Detailed notes: [docs/architecture/WEB-COMPATIBILITY.md](docs/architecture/WEB-C
 
 ## Cloudflare deployment
 
-For your requested model (no controlled relay), deploy only static web assets.
+For your requested model (no controlled media relay), deploy the web app over HTTPS.
 
-1. Deploy [apps/web/public](apps/web/public) as static content.
-2. Enable HTTPS.
-3. Validate two-device browser connection after deploy.
+1. Deploy this Next.js app with a Cloudflare-compatible workflow.
+2. Keep signaling lightweight and never relay audio through backend.
+3. Enable HTTPS.
+4. Validate two-device browser connection after deploy.
 
 Cloudflare Workers is fine for static hosting/routing and optional signaling helpers, but not as a UDP media relay.
+
+## Build verification
+
+```powershell
+cd apps/web
+npm run build
+```
+
+Current status: build passes.
 
 ## Current development priorities
 
